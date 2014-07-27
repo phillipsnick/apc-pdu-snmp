@@ -1,0 +1,19 @@
+{
+  "name": "apc-pdu-snmp",
+  "description": "APC PDU module utilizing SNMP",
+  "author": "Nick Phillips <nick@linkstudios.co.uk>",
+  "version": "0.0.1",
+  "keywords": [
+    "apc",
+    "pdu",
+    "snmp"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phillipsnick/apc-pdu-snmp.git"
+  },
+  "main": "./lib/apc.js",
+  "dependencies": {
+    "snmp-native": "~1.0.16"
+  }
+}
