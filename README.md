@@ -4,7 +4,7 @@ Very basic module providing basic management of APC PDUs. Such as turning outlet
 
 ## Installation
 
-  npm install apc-pdu-snmp --save
+```npm install apc-pdu-snmp --save```
   
 ## Usage
 

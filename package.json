@@ -1,6 +1,6 @@
 {
   "name": "apc-pdu-snmp",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "APC PDU module utilizing SNMP",
   "main": "./lib/apc.js",
   "scripts": {
