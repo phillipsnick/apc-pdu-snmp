@@ -46,7 +46,7 @@ pdu.fetchPowerDraw(function(error, draw) {
     return;
   }
 
-  console.log('Power draw is currently: ', draw);
+  console.log('Power draw is currently: ', draw, 'amps');
 });
 
 // Use //* to activate this example or /* to disable this example
