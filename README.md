@@ -27,11 +27,13 @@ All API methods currently use a callback to provide the response back to you.
 To fetch the count of outlets on the PDU.
 
 ```javascript
-pdu.fetchTotalOutlets(function(totalOutlets) {
+pdu.fetchTotalOutlets(function(err, totalOutlets) {
+  if (err) {
+    // optional error call back function
+    // error variable provided as a object
+    return;
+  }
   // totalOutlets now contains an integer with the total number of outlets
-}, function(error) {
-  // optional error call back function 
-  // error variable provided as a object
 });
 ```
   
@@ -43,7 +45,7 @@ This has been put together as quickly as possible to prototype out a control sys
 
 Hopefully will have some time in the future to improve the features and add some tests as using example.js for testing is pretty bad :)
 
-All the MIBs have been hard coded into this module, for more details see the [PowerNet-MIB](http://www.observium.org/svn/observer/trunk/mibs/PowerNet-MIB)
+All the MIBs have been hard coded into this module, for more details see the [PowerNet-MIB](ftp://ftp.apc.com/apc/public/software/pnetmib/mib/411/powernet411.mib)
 
 Error handling isn't too brilliant either!
 
