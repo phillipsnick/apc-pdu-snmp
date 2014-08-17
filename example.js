@@ -49,6 +49,30 @@ pdu.fetchPowerDraw(function(error, draw) {
   console.log('Power draw is currently: ', draw, 'amps');
 });
 
+pdu.fetchLowLoadThreshold(function(error, threshold) {
+  if (error) {
+    console.log(error.toString());
+  }
+
+  console.log('Low load warning threshold is: ', threshold, 'amps');
+});
+
+pdu.fetchNearLoadThreshold(function(error, threshold) {
+  if (error) {
+    console.log(error.toString());
+  }
+
+  console.log('Near load warning threshold is: ', threshold, 'amps');
+});
+
+pdu.fetchOverLoadThreshold(function(error, threshold) {
+  if (error) {
+    console.log(error.toString());
+  }
+
+  console.log('Over load alarm threshold is: ', threshold, 'amps');
+});
+
 // Use //* to activate this example or /* to disable this example
 /*
 pdu.setPowerState(1, true, function(error) {
