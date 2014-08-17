@@ -11,7 +11,7 @@ npm install apc-pdu-snmp --save
   
 ## Usage
 
-See [examples.js](https://github.com/phillipsnick/apc-pdu-snmp/blob/master/examples.js) for a full breakdown of available methods.
+See [examples.js](https://github.com/phillipsnick/apc-pdu-snmp/blob/master/example.js) for a full breakdown of available methods.
 
 Currently the only option which is supported is `host` when creating the object.
  
