@@ -4,7 +4,10 @@ Very basic module providing basic management of APC PDUs. Such as turning outlet
 
 ## Installation
 
-```npm install apc-pdu-snmp --save```
+```
+npm install apc-pdu-snmp --save
+```
+
   
 ## Usage
 
@@ -22,6 +25,7 @@ var pdu = new apc.pdu({
 
 All API methods currently use a callback to provide the response back to you.
 
+
 ### Methods
 
 To fetch the count of outlets on the PDU.
@@ -38,6 +42,7 @@ pdu.fetchTotalOutlets(function(err, totalOutlets) {
 ```
   
 To be continuned...
+
   
 ## Notes
 
@@ -47,7 +52,6 @@ Hopefully will have some time in the future to improve the features and add some
 
 All the MIBs have been hard coded into this module, for more details see the [PowerNet-MIB](ftp://ftp.apc.com/apc/public/software/pnetmib/mib/411/powernet411.mib)
 
-Error handling isn't too brilliant either!
 
 ## Acknowledgements
 
