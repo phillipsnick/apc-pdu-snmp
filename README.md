@@ -59,4 +59,4 @@ Wouldn't have been able to build this without this great article on SNMP for APC
 
 ## Licence
 
-[The MIT License (MIT)](https://github.com/phillipsnick/apc-pdu-snmp/blob/master/LICENCE)
+[The MIT License (MIT)](https://github.com/phillipsnick/apc-pdu-snmp/blob/master/LICENSE)
