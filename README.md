@@ -2,6 +2,7 @@
 
 Very basic module providing basic management of APC PDUs. Such as turning outlets on and off, the current power state and total power draw for the PDU.
 
+
 ## Installation
 
 ```
