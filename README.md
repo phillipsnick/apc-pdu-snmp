@@ -26,23 +26,23 @@ var pdu = new apcPdu({
 A full range of examples can be found within the [examples directory](https://github.com/phillipsnick/apc-pdu-snmp/tree/master/examples).
 
 
-## Methods
+### Methods
 
-### getTotalOutlets - Get the total number of outlets
+#### getTotalOutlets - Get the total number of outlets
 
 ```javascript
 pdu.getTotalOutlets(function(err, totalOutlets) {});
 ```
 
 
-### getOutletName - Get an outlet name
+#### getOutletName - Get an outlet name
 
 ```javascript
 pdu.getOutletName(outletNumber, function(err, name) {});
 ```
 
 
-### getOutletNames - Get all outlet names
+#### getOutletNames - Get all outlet names
 
 ```javascript
 pdu.getOutletNames(function(err, names) {});
@@ -59,7 +59,7 @@ The names variable will contain an object, keys as the outlet number and the val
 ```
 
 
-### getOutletPowerState - Get the power state of an outlet
+#### getOutletPowerState - Get the power state of an outlet
 
 ```javascript
 pdu.getOutletPowerState(function(err, state) {});
@@ -68,14 +68,55 @@ pdu.getOutletPowerState(function(err, state) {});
 The state variable will be 1 (on) or 0 (off).
 
 
-### getPowerDraw - Get the power draw of the whole PDU in amps
+#### getPowerDraw - Get the power draw of the whole PDU in amps
 
 ```javascript
 pdu.getPowerDraw(function(err, amps) {});
 ```
 
 
-### setPowerState - Turn an outlet on/off
+#### getLowLoadThreshold - Get the low load warning threshold in amps
+
+```javascript
+pdu.getLowLoadThreshold(function(err, amps) {});
+```
+
+
+#### getNearLoadThreshold - Get the near load warning threshold in amps
+
+```javascript
+pdu.getNearLoadThreshold(function(err, amps) {});
+```
+
+
+#### getOverloadThreshold - Get the overload alarm threshold in amps
+
+```javascript
+pdu.getOverloadThreshold(function(err, amps) {});
+```
+
+
+#### getLoadState - Get the load state
+
+```javascript
+pdu.getLoadState(function(err, state) {});
+```
+
+The result will be an integer
+
+* 1: bankLoadNormal
+* 2: bankLoadLow
+* 3: bankLoadNearOverload
+* 4: bankLoadOverload
+
+The translated key is available within the library as shown in the example below 
+
+```javascript
+console.log(apcPdu.loadState[result]);
+```
+
+
+#### setPowerState - Turn an outlet on/off
 
 ```javascript
 pdu.setPowerState(outlet, state, function(err) {});

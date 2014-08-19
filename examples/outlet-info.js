@@ -62,3 +62,51 @@ pdu.getPowerDraw(function(err, draw) {
 
   console.log('Power draw is currently:', draw, 'amps');
 });
+
+/**
+ * Get the low load warning threshold
+ */
+pdu.getLowLoadThreshold(function(err, amps) {
+  if (err) {
+    console.log(err.toString());
+    return;
+  }
+
+  console.log('Low warning threshold is', amps, 'amps');
+});
+
+/**
+ * Get the near load warning threshold
+ */
+pdu.getNearLoadThreshold(function(err, amps) {
+  if (err) {
+    console.log(err.toString());
+    return;
+  }
+
+  console.log('Near overload warning threshold is,', amps, 'amps');
+});
+
+/**
+ * Get the overload threshold (amps)
+ */
+pdu.getOverloadThreshold(function(err, amps) {
+  if (err) {
+    console.log(err.toString());
+    return;
+  }
+
+  console.log('Overload alarm threshold is', amps, 'amps');
+});
+
+/**
+ * Get the load state
+ */
+pdu.getLoadState(function(err, state) {
+  if (err) {
+    console.log(err.toString());
+    return;
+  }
+
+  console.log('The current load state is', apcPdu.loadState[state], '(', state, ')');
+});
