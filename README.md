@@ -1,6 +1,6 @@
 # APC PDU SNMP Control
 
-Very basic module providing basic management of APC PDUs. Such as turning outlets on and off, the current power state and total power draw for the PDU.
+Module for providing basic management of APC PDUs. Such as turning outlets on and off, the current power state and total power draw for the PDU.
 
 
 ## Installation
@@ -12,51 +12,89 @@ npm install apc-pdu-snmp --save
   
 ## Usage
 
-See [examples.js](https://github.com/phillipsnick/apc-pdu-snmp/blob/master/example.js) for a full breakdown of available methods.
 
 Currently the only option which is supported is `host` when creating the object.
  
 ```javascript
-var apc = require('apc-pdu-snmp');
+var apcPdu = require('apc-pdu-snmp');
 
-var pdu = new apc.pdu({
+var pdu = new apcPdu({
   host: 'IP Address/Hostname'
 });
 ```
 
-All API methods currently use a callback to provide the response back to you.
+A full range of examples can be found within the [examples directory](https://github.com/phillipsnick/apc-pdu-snmp/tree/master/examples).
 
 
-### Methods
+## Methods
 
-To fetch the count of outlets on the PDU.
+### getTotalOutlets - Get the total number of outlets
 
 ```javascript
-pdu.fetchTotalOutlets(function(err, totalOutlets) {
-  if (err) {
-    // optional error call back function
-    // error variable provided as a object
-    return;
-  }
-  // totalOutlets now contains an integer with the total number of outlets
-});
+pdu.getTotalOutlets(function(err, totalOutlets) {});
 ```
-  
-To be continuned...
+
+
+### getOutletName - Get an outlet name
+
+```javascript
+pdu.getOutletName(outletNumber, function(err, name) {});
+```
+
+
+### getOutletNames - Get all outlet names
+
+```javascript
+pdu.getOutletNames(function(err, names) {});
+```
+
+The names variable will contain an object, keys as the outlet number and the value being the outlet name eg.
+
+```
+{ 
+  '1': 'Outlet 1',
+  '2': 'Outlet 2',
+  '3': 'Outlet 3'
+}
+```
+
+
+### getOutletPowerState - Get the power state of an outlet
+
+```javascript
+pdu.getOutletPowerState(function(err, state) {});
+```
+
+The state variable will be 1 (on) or 0 (off).
+
+
+### getPowerDraw - Get the power draw of the whole PDU in amps
+
+```javascript
+pdu.getPowerDraw(function(err, amps) {});
+```
+
+
+### setPowerState - Turn an outlet on/off
+
+```javascript
+pdu.setPowerState(outlet, state, function(err) {});
+```
+
+The state variable should be true to turn an outlet on and false to turn and outlet off.
 
   
 ## Notes
 
-This has been put together as quickly as possible to prototype out a control system that is currently being built. There is more than likely going to be a few bugs!
+Hopefully will have some time in the future to improve the features and add some tests as using the examples for testing is pretty bad :)
 
-Hopefully will have some time in the future to improve the features and add some tests as using example.js for testing is pretty bad :)
-
-All the MIBs have been hard coded into this module, for more details see the [PowerNet-MIB](ftp://ftp.apc.com/apc/public/software/pnetmib/mib/411/powernet411.mib)
+All the MIBs have been hard coded into this module, for more details see the PowerNet-MIB ftp://ftp.apc.com/apc/public/software/pnetmib/mib/411/powernet411.mib
 
 
 ## Acknowledgements
 
 Wouldn't have been able to build this without this great article on SNMP for APC PDUs by Joshua Tobin [SNMP Tutorial – APC PDUs](http://tobinsramblings.wordpress.com/2011/05/03/snmp-tutorial-apc-pdus/)
+
 
 ## Licence
 
