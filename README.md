@@ -6,7 +6,7 @@ Module for providing basic management of APC PDUs. Such as turning outlets on an
 ## Installation
 
 ```
-npm install apc-pdu-snmp --save
+npm install apc-pdu-snmp
 ```
 
   
@@ -19,33 +19,83 @@ Currently the only option which is supported is `host` when creating the object.
 var apcPdu = require('apc-pdu-snmp');
 
 var pdu = new apcPdu({
-  host: 'IP Address/Hostname'
+  host: '' // IP Address/Hostname
 });
 ```
 
 A full range of examples can be found within the [examples directory](https://github.com/phillipsnick/apc-pdu-snmp/tree/master/examples).
 
 
-### Methods
+### Method
 
-#### getTotalOutlets - Get the total number of outlets
+### getTotalOutlets(callback)
+ 
+Get the total number of outlets on the PDU.
 
-```javascript
-pdu.getTotalOutlets(function(err, totalOutlets) {});
+__Arguments__
+
+* `callback(err, totalOutlets)` - Callback function for error/response handling
+
+__Example__
+
+```js
+pdu.getTotalOutlets(function(err, totalOutlets) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+  
+  console.log('Total outlets:', totalOutlets);
+});
 ```
 
+---------------------------------------
 
-#### getOutletName - Get an outlet name
+### getOutletName(outletNumber, callback)
+ 
+Get an outlet name as configured on the PDU.
 
-```javascript
-pdu.getOutletName(outletNumber, function(err, name) {});
+__Arguments__
+
+* `outletNumber` - Integer of the outlet number to get the name for
+* `callback(err, name)` - Callback function for error/response handling
+
+__Example__
+
+Get the name out outlet 1.
+
+```js
+pdu.getOutletName(1, function(err, name) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+  
+  console.log('Outlet 1 name:', name);
+});
 ```
 
+---------------------------------------
 
-#### getOutletNames - Get all outlet names
+### getOutletNames(callback)
 
-```javascript
-pdu.getOutletNames(function(err, names) {});
+Get all outlet names as configured on the PDU.
+
+__Arguments__
+
+* `callback(err, names)` - Callback function for error/response handling
+
+__Example__
+
+```js
+pdu.getOutletNames(function(err, names) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+  
+  console.log('All outlet names:', names);
+});
 ```
 
 The names variable will contain an object, keys as the outlet number and the value being the outlet name eg.
@@ -58,68 +108,186 @@ The names variable will contain an object, keys as the outlet number and the val
 }
 ```
 
+---------------------------------------
 
-#### getOutletPowerState - Get the power state of an outlet
+### getOutletPowerState(outletNumber, callback)
+ 
+Get the power state of an outlet. 
 
-```javascript
-pdu.getOutletPowerState(function(err, state) {});
+State variable will return either:
+  
+* 0 - off
+* 1 - on
+
+__Arguments__
+
+* `outletNumber` - Integer of the outlet number to get the power state for
+* `callback(err, state)` - Callback function for error/response handling
+
+__Example__
+
+Get the power state for outlet 1.
+
+```js
+pdu.getOutletPowerState(1, function(err, state) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+  
+  console.log('Outlet 1 is currently:', state == '1' ? 'On' : 'Off');
+});
 ```
 
-The state variable will be 1 (on) or 0 (off).
+---------------------------------------
 
+### getPowerDraw(callback)
+ 
+Get the power draw of the whole PDU in amps.
 
-#### getPowerDraw - Get the power draw of the whole PDU in amps
+__Arguments__
 
-```javascript
-pdu.getPowerDraw(function(err, amps) {});
+* `callback(err, amps)` - Callback function for error/response handling
+
+__Example__
+
+```js
+pdu.getPowerDraw(function(err, amps) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+
+  console.log('Power draw is currently:', draw, 'amps');
+});
 ```
 
+---------------------------------------
 
-#### getLowLoadThreshold - Get the low load warning threshold in amps
+### getLowLoadThreshold(callback)
 
-```javascript
-pdu.getLowLoadThreshold(function(err, amps) {});
+Get the configured low load warning threshold in amps.
+
+__Arguments__
+
+* `callback(err, amps)` - Callback function for error/response handling
+
+__Example__
+
+```js
+pdu.getLowLoadThreshold(function(err, amps) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+
+  console.log('Low warning threshold is', amps, 'amps');
+});
 ```
 
+---------------------------------------
 
-#### getNearLoadThreshold - Get the near load warning threshold in amps
+### getNearLoadThreshold(callback)
 
-```javascript
-pdu.getNearLoadThreshold(function(err, amps) {});
+Get the configured near load warning threshold in amps.
+
+__Arguments__
+
+* `callback(err, amps)` - Callback function for error/response handling
+
+__Example__
+
+```js
+pdu.getNearLoadThreshold(function(err, amps) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+
+  console.log('Near overload warning threshold is,', amps, 'amps');
+});
 ```
 
+---------------------------------------
 
-#### getOverloadThreshold - Get the overload alarm threshold in amps
+### getOverloadThreshold(callback)
 
-```javascript
-pdu.getOverloadThreshold(function(err, amps) {});
+Get the configured overload alarm threshold in amps.
+
+__Arguments__
+
+* `callback(err, amps)` - Callback function for error/response handling
+
+__Example__
+
+```js
+pdu.getOverloadThreshold(function(err, amps) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+
+  console.log('Overload alarm threshold is', amps, 'amps');
+});
 ```
 
+---------------------------------------
 
-#### getLoadState - Get the load state
+### getLoadState(callback)
 
-```javascript
-pdu.getLoadState(function(err, state) {});
+Get the current load state.
+
+__Arguments__
+
+* `callback(err, state)` - Callback function for error/response handling. The `state` variable will contain an integer as per the table below.
+
+|State|Translation|
+|-----|-----------|
+|1|bankLoadNormal|
+|2|bankLoadLow|
+|3|bankLoadNearOverload|
+|4|bankLoadOverload|
+
+The translated key is available within the library using `apcPdu.loadState`, as shown in the example below.
+
+__Example__
+
+```js
+pdu.getLoadState(function(err, state) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+
+  console.log('The current load state is', apcPdu.loadState[state], '(', state, ')');
+});
 ```
 
-The result will be an integer
+---------------------------------------
 
-* 1: bankLoadNormal
-* 2: bankLoadLow
-* 3: bankLoadNearOverload
-* 4: bankLoadOverload
+### setPowerState(outletNumber, state, callback)
 
-The translated key is available within the library as shown in the example below 
+Turn an outlet on/off.
 
-```javascript
-console.log(apcPdu.loadState[result]);
-```
+__Arguments__
 
+* `outletNumber` - Outlet as an integer
+* `state` - Boolean, true to turn outlet on and false to turn outlet off
+* `callback(err)` - Callback for error/success handling
 
-#### setPowerState - Turn an outlet on/off
+__Example__
 
-```javascript
-pdu.setPowerState(outlet, state, function(err) {});
+Turn outlet 1 on.
+
+```js
+pdu.setPowerState(1, true, function(err) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+  
+  console.log('Successfully turned outlet 1 on');
+});
 ```
 
 The state variable should be true to turn an outlet on and false to turn and outlet off.
