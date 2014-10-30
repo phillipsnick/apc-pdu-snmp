@@ -19,7 +19,8 @@ Currently the only option which is supported is `host` when creating the object.
 var apcPdu = require('apc-pdu-snmp');
 
 var pdu = new apcPdu({
-  host: '' // IP Address/Hostname
+  host: '', // IP Address/Hostname
+  community: 'private' // Optional community
 });
 ```
 
@@ -272,7 +273,7 @@ Turn an outlet on/off.
 __Arguments__
 
 * `outletNumber` - Outlet as an integer
-* `state` - Boolean, true to turn outlet on and false to turn outlet off
+* `state` - Boolean, true is on, false is off. Alternatively a number, 3 is reboot.
 * `callback(err)` - Callback for error/success handling
 
 __Example__
@@ -290,7 +291,16 @@ pdu.setPowerState(1, true, function(err) {
 });
 ```
 
-The state variable should be true to turn an outlet on and false to turn and outlet off.
+The state variable should be a boolean or number. If a boolean, use true to turn an outlet on and false to turn and outlet off. If a number, use a raw sPDUOutletCtl code:
+
+* outletOn: 1
+* outletOff: 2
+* outletReboot: 3
+* outletUnknown: 4
+* outletOnWithDelay: 5
+* outletOffWithDelay: 6
+* outletRebootWithDelay: 7
+
 
   
 ## Notes
