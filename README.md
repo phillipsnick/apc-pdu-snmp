@@ -315,6 +315,10 @@ All the MIBs have been hard coded into this module, for more details see the Pow
 Wouldn't have been able to build this without this great article on SNMP for APC PDUs by Joshua Tobin [SNMP Tutorial – APC PDUs](http://tobinsramblings.wordpress.com/2011/05/03/snmp-tutorial-apc-pdus/)
 
 
+## Contributors
+
+* [@createp](https://github.com/cretep)
+
 ## Licence
 
 [The MIT License (MIT)](https://github.com/phillipsnick/apc-pdu-snmp/blob/master/LICENSE)
