@@ -301,6 +301,30 @@ The state variable should be a boolean or number. If a boolean, use true to turn
 * outletOffWithDelay: 6
 * outletRebootWithDelay: 7
 
+---------------------------------------
+
+### setName(outletNumber, state, callback)
+
+Set Outlet Name
+
+__Arguments__
+* `outletNumber` - Outlet as an integer
+* `name` - Outlet name as an String
+* `callback(err)` - Callback for error/success handling
+
+__Example__
+Set outlet 1 name with 'outlet1'
+
+```js
+pdu.setName(1, 'outlet1', function(err) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+  console.log('Successfully set outlet 1');
+});
+```
+
 
   
 ## Notes
